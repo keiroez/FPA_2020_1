@@ -2,7 +2,7 @@
 
 by Izaquiel de Queiroz Ferreira
 
-Códigos desenvolvidos para a disciplina:
+Projetos desenvolvidos para a disciplina:
 
 >flutter_app_get_start
 >>Teste drive flutter para configuração do ambiente
