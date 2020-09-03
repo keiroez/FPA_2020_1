@@ -15,17 +15,18 @@ class _HomeScreen extends State<HomeScreen> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Colors.black),
         home: Scaffold(
-          appBar: AppBar(
-            title: Text("Login"),
-          ),
-          body: Container(child: lsv("Usuário")),
-        ));
+            appBar: AppBar(
+              title: Text("Login"),
+            ),
+            body: Container(
+              child: lsv("Usuário"),
+              color: Colors.white,
+            )));
   }
 
-  void _pushSaved() {
+  void _pressLogin() {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
-
         builder: (BuildContext context) {
           return Scaffold(
             appBar: AppBar(
@@ -41,13 +42,20 @@ class _HomeScreen extends State<HomeScreen> {
 
   ListView lsv(textHint) {
     ListView lsv = ListView(children: <Widget>[
-      Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.only(top: 200),
-        child: Text(''),
+      Padding(
+        padding: EdgeInsets.only(top: 100, left: 100, right: 100, bottom: 20),
+        child: Container(
+            width: 100,
+            height: 180,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: new AssetImage('assets/images/logo3.jpg'),
+                ))),
       ),
       Padding(
-        padding: EdgeInsets.only(left: 70, top: 20, right: 70),
+        padding: EdgeInsets.only(left: 70, right: 70),
         child: TextField(
           textAlign: TextAlign.center,
           decoration: new InputDecoration(
@@ -61,20 +69,22 @@ class _HomeScreen extends State<HomeScreen> {
         ),
       ),
       Padding(
-        padding: EdgeInsets.only(left: 150, right: 150),
+        padding: EdgeInsets.only(left: 100, right: 100, top: 20),
         child: FlatButton(
-            child: Icon(
-              Icons.navigate_next,
-              color: Colors.white,
-              size: 24.0,
-              semanticLabel: 'Text to announce in accessibility modes',
-            ),
-            color: Colors.black,
-            onPressed: () {
-              _pushSaved();
-            },
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(30.0))),
+          shape: new CircleBorder(),
+          child: Container(
+            alignment: Alignment.center,
+              child: Icon(
+            Icons.navigate_next,
+            color: Colors.white,
+            size: 50.0,
+            semanticLabel: 'Text to announce in accessibility modes',
+          )),
+          color: Colors.black,
+          onPressed: () {
+            _pressLogin();
+          },
+        ),
       )
     ]);
     return lsv;
