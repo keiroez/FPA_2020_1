@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:evenluate_app/view/project_screen.dart';
+import 'package:evenluate_app/view/home_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _HomeScreen createState() => _HomeScreen();
+  _LoginScreen createState() => _LoginScreen();
 }
 
-class _HomeScreen extends State<HomeScreen> {
+class _LoginScreen extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
@@ -17,18 +17,33 @@ class _HomeScreen extends State<HomeScreen> {
         theme: ThemeData(primaryColor: Colors.black),
         home: Scaffold(
             appBar: AppBar(
-              title: Text("Home"),
+              title: Text("Login"),
             ),
             body: Container(
-              child: lsv("Código do projeto"),
+              child: lsv("Usuário"),
               color: Colors.white,
             )));
   }
 
-  void _insertQrcode() {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => ProjectScreen()));
+  void _pressLogin(textHint) {
+    if (textHint == "Usuário") {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) {
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.black,
+                title: Text("Senha"),
+              ),
+              body: Container(child: lsv('Senha')),
+            );
+          }, // ...to here.
+        ),
+      );
+    }
+    else{
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
   }
 
   ListView lsv(textHint) {
@@ -36,41 +51,14 @@ class _HomeScreen extends State<HomeScreen> {
       Padding(
         padding: EdgeInsets.only(top: 100, left: 100, right: 100, bottom: 20),
         child: Container(
-            child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.photo_camera,
-                      color: Colors.white,
-                      size: 80,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Ler QRCode',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                )
-              ],
-            )),
             width: 100,
             height: 180,
             decoration: BoxDecoration(
-              color: Colors.black,
-              shape: BoxShape.circle,
-            )),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: new AssetImage('assets/images/logo3.jpg'),
+                ))),
       ),
       Padding(
         padding: EdgeInsets.only(left: 70, right: 70),
@@ -100,7 +88,7 @@ class _HomeScreen extends State<HomeScreen> {
               )),
           color: Colors.black,
           onPressed: () {
-            _insertQrcode();
+            _pressLogin(textHint);
           },
         ),
       )

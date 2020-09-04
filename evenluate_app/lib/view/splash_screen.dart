@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:evenluate_app/view/home_screen.dart';
+import 'package:evenluate_app/view/login_screen.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -27,7 +27,7 @@ class _SplashScreen extends State<SplashScreen>{
   }
 
   onDoneLoading() async {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
     // Navigator.pop(context);
   }
 
