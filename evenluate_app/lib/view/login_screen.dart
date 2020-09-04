@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:evenluate_app/view/home_screen.dart';
+import 'package:evenluate_app/view/menu_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -42,7 +42,7 @@ class _LoginScreen extends State<LoginScreen> {
       );
     }
     else{
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MenuScreen()));
     }
   }
 

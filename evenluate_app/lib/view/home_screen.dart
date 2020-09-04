@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:evenluate_app/view/project_screen.dart';
+import 'package:evenluate_app/view/menu_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,28 +11,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: Colors.black),
-        home: Scaffold(
-            appBar: AppBar(
-              title: Text("Home"),
-            ),
-            body: Container(
-              child: lsv("Código do projeto"),
-              color: Colors.white,
-            )));
-  }
-
-  void _insertQrcode() {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => ProjectScreen()));
-  }
-
-  ListView lsv(textHint) {
-    ListView lsv = ListView(children: <Widget>[
+    return ListView(children: <Widget>[
       Padding(
         padding: EdgeInsets.only(top: 100, left: 100, right: 100, bottom: 20),
         child: Container(
@@ -77,7 +56,7 @@ class _HomeScreen extends State<HomeScreen> {
         child: TextField(
           textAlign: TextAlign.center,
           decoration: new InputDecoration(
-            hintText: textHint,
+            hintText: 'Código do projeto',
             enabledBorder: const OutlineInputBorder(
               // width: 0.0 produces a thin "hairline" border
               borderSide: const BorderSide(color: Colors.black, width: 0.0),
@@ -105,6 +84,10 @@ class _HomeScreen extends State<HomeScreen> {
         ),
       )
     ]);
-    return lsv;
+  }
+
+  void _insertQrcode() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => MenuScreen()));
   }
 }
