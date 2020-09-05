@@ -26,7 +26,17 @@ class _ProjectScreen extends State<ProjectScreen> {
     return ListView.builder(
         itemCount: widget.items.length,
         itemBuilder: (context, index) {
-          return Text(widget.items[index].title);
+          return Card(
+              child: Container(
+                  height: 80,
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(widget.items[index].title),
+                    ],
+                  )));
+//            Text(widget.items[index].title);
         });
   }
 }
