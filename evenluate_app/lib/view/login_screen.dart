@@ -16,9 +16,9 @@ class _LoginScreen extends State<LoginScreen> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Colors.black),
         home: Scaffold(
-            appBar: AppBar(
-              title: Text("Login"),
-            ),
+//            appBar: AppBar(
+//              title: Text("Login"),
+//            ),
             body: Container(
               child: lsv("Usuário"),
               color: Colors.white,
@@ -31,10 +31,10 @@ class _LoginScreen extends State<LoginScreen> {
         MaterialPageRoute<void>(
           builder: (BuildContext context) {
             return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.black,
-                title: Text("Senha"),
-              ),
+//              appBar: AppBar(
+//                backgroundColor: Colors.black,
+//                title: Text("Senha"),
+//              ),
               body: Container(child: lsv('Senha')),
             );
           }, // ...to here.

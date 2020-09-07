@@ -1,3 +1,4 @@
+import 'package:evenluate_app/view/evaluation_screen.dart';
 import 'package:evenluate_app/view/home_screen.dart';
 import 'package:evenluate_app/view/project_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,9 +35,8 @@ class _MenuScreen extends State<MenuScreen> {
     Container(
       child: new HomeScreen(),
     ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
+    Container(
+      child: new EvaluationScreen(),
     ),
   ];
 
@@ -58,9 +58,6 @@ class _MenuScreen extends State<MenuScreen> {
               ],
             ),
           ),
-//          body: Container(
-//            child: _widgetOptions.elementAt(_selectedIndex),
-//          ),
           bottomNavigationBar: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
@@ -72,8 +69,8 @@ class _MenuScreen extends State<MenuScreen> {
                 title: Text('Home'),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.school),
-                title: Text('School'),
+                icon: Icon(Icons.edit),
+                title: Text('Avaliação'),
               ),
             ],
             currentIndex: _selectedIndex,

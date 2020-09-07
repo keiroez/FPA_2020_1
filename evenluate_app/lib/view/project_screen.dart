@@ -27,15 +27,20 @@ class _ProjectScreen extends State<ProjectScreen> {
         itemCount: widget.items.length,
         itemBuilder: (context, index) {
           return Card(
-              child: Container(
-                  height: 80,
-                  padding: EdgeInsets.only(bottom: 20),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(widget.items[index].title),
-                    ],
-                  )));
+              child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    print('Card tapped.');
+                  },
+                  child: Container(
+                      height: 80,
+                      padding: EdgeInsets.only(bottom: 20),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(widget.items[index].title),
+                        ],
+                      ))));
 //            Text(widget.items[index].title);
         });
   }
