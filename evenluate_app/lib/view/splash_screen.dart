@@ -21,7 +21,7 @@ class _SplashScreen extends State<SplashScreen> {
   }
 
   Future<Timer> loadData() async {
-    return new Timer(Duration(seconds: 2), onDoneLoading);
+    return new Timer(Duration(seconds: 5), onDoneLoading);
   }
 
   onDoneLoading() async {
@@ -55,8 +55,8 @@ class _SplashScreen extends State<SplashScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Image.asset('assets/images/logo.png',
-                                width: 100.0, height: 100.0),
+                            Image.asset('assets/images/logo2.png',
+                                width: 200.0, height: 200.0),
                             new Container(
                               // elevation: 0,
                               decoration: BoxDecoration(
