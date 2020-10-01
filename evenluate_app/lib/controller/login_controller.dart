@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:evenluate_app/model/user.dart';
 import 'package:evenluate_app/model/utils/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoginController {
@@ -30,7 +31,7 @@ class LoginController {
     if (textHint == "user") {
       this.login = loginSenha;
       Navigator.of(context).push(
-        MaterialPageRoute<void>(
+        CupertinoPageRoute<void>(
           builder: (BuildContext context) {
             return WillPopScope(
                 onWillPop: _onBackPressed,
@@ -121,4 +122,5 @@ class LoginController {
       return false;
     }
   }
+
 }
