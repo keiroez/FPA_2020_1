@@ -1,3 +1,4 @@
+import 'package:evenluate_app/view/about_screen.dart';
 import 'package:evenluate_app/view/evaluation_screen.dart';
 import 'package:evenluate_app/view/home_screen.dart';
 import 'package:evenluate_app/view/project_screen.dart';
@@ -30,13 +31,13 @@ class _MenuScreen extends State<MenuScreen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     Container(
-      child: new ProjectScreen(),
+      child: new AboutScreen(),
     ),
     Container(
       child: new HomeScreen(),
     ),
     Container(
-      child: new EvaluationScreen(),
+      child: new ProjectScreen(),
     ),
   ];
 
@@ -62,7 +63,7 @@ class _MenuScreen extends State<MenuScreen> {
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.toc),
-                title: Text('Projetos'),
+                title: Text('Sobre'),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
@@ -70,7 +71,7 @@ class _MenuScreen extends State<MenuScreen> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.edit),
-                title: Text('Avaliação'),
+                title: Text('Projetos'),
               ),
             ],
             currentIndex: _selectedIndex,
