@@ -1,3 +1,6 @@
+import 'package:evenluate_app/controller/evaluation_controller.dart';
+import 'package:evenluate_app/model/Member.dart';
+import 'package:evenluate_app/model/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +11,10 @@ class EvaluationScreen extends StatefulWidget {
 
 class _EvaluationScreen extends State<EvaluationScreen> {
   int _valueRadioTipoCliente = 0;
-  String _optionSelect = 'Novo Cliente';
+  String _optionSelect = 'Nota';
 
   Widget build(BuildContext context) {
+    EvaluationController evaluationController = EvaluationController();
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -23,38 +27,49 @@ class _EvaluationScreen extends State<EvaluationScreen> {
           children: [
             Card(
                 child: Container(
-                    height: 80,
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: Column(children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Trabalho X',
-                          style: TextStyle(
-                            fontSize: 25
-                          )),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text('Autores: Fulano de tal e Ciclano')
-                        ],
-                      )
-                    ]))),
+                    height: 100,
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(Constants.PROJECT.title,
+                                style: TextStyle(fontSize: 20)),
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          height: 40,
+                            child: ListView(
+                          children: [
+                            Text(
+                                'Autores: ' +
+                                    autores(Constants.PROJECT.team.members),
+                                textAlign: TextAlign.left),
+                          ],
+                        ))
+                      ],
+                    ))),
             Card(
                 child: Container(
               height: 200,
               child: ListView(
                 children: [
                   Row(
-                    children: [Text('Resumo: ')],
-                  ),
-                  Row(
                     children: [
                       Text(
-                          "Aqui irá aparecer o resumo do trabalho que será avaliado...")
+                        'Resumo: ',
+                      )
                     ],
-                  )
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      Constants.PROJECT.resume,
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
                 ],
               ),
             )),
@@ -94,6 +109,10 @@ class _EvaluationScreen extends State<EvaluationScreen> {
         ));
   }
 
+  Future<bool> _onBackPressed() async {
+    return true;
+  }
+
   Column notas(int value) {
     return Column(
       children: [
@@ -130,12 +149,31 @@ class _EvaluationScreen extends State<EvaluationScreen> {
 
       switch (_valueRadioTipoCliente) {
         case 0:
-          _optionSelect = 'Novo Cliente';
+          _optionSelect = '1';
           break;
         case 1:
-          _optionSelect = 'Migração';
+          _optionSelect = '2';
+          break;
+        case 2:
+          _optionSelect = '3';
+          break;
+        case 3:
+          _optionSelect = '4';
+          break;
+        case 4:
+          _optionSelect = '5';
           break;
       }
     });
+  }
+
+  String autores(List<Member> list) {
+    var concatenate = StringBuffer();
+
+    list.forEach((item) {
+      concatenate.write(item.name + " ");
+    });
+
+    return concatenate.toString();
   }
 }

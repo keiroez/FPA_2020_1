@@ -87,7 +87,7 @@ class _HomeScreen extends State<HomeScreen> {
               )),
           color: Colors.black,
           onPressed: () {
-            _insertQrcode();
+              homeController.irParaProjeto(context);
           },
         ),
       )

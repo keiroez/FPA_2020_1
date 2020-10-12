@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:evenluate_app/model/user.dart';
+import 'package:evenluate_app/model/Evaluator.dart';
+import 'package:evenluate_app/model/User.dart';
+import 'package:evenluate_app/model/dio/dio_service.dart';
 import 'package:evenluate_app/model/utils/constants.dart';
 import 'package:evenluate_app/view/menu_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,6 +26,16 @@ class LoginController {
       Constants.USER_TOKEN = response.data['token'];
       print(Constants.USER_TOKEN);
       return User.fromMap(response.data);
+    }
+  }
+
+  _dioEvaluator(String id) async {
+    DioService dio = DioService();
+    var response = await dio.service.get('evaluator/byuser/${id}');
+    if (response.statusCode != 200) {
+      throw Exception();
+    } else {
+      Constants.EVALUATOR = Evaluator.fromMap(response.data);
     }
   }
 
@@ -56,7 +68,11 @@ class LoginController {
       showProgressDialog(context);
       try {
         this.user = await _dioLogin(this.login, this.psw);
+        print(user.id);
         Constants.USER = this.user;
+
+        _dioEvaluator(Constants.USER.id.toString());
+
         progressDialog.hide();
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => MenuScreen()));
@@ -167,7 +183,6 @@ class LoginController {
         elevation: 20.0,
       );
     }
-
     progressDialog.show();
   }
 }

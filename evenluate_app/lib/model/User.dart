@@ -9,11 +9,11 @@ class User{
 
   factory User.fromMap(Map json) {
     return User(
-      json['id'],
-      json['first_name'],
-      json['last_name'],
-      json['password'],
-      json['email'],
+      json['user']['id'],
+      json['user']['first_name'],
+      json['user']['last_name'],
+      json['user']['password'],
+      json['user']['email'],
     );
   }
 
