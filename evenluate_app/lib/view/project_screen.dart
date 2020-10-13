@@ -26,48 +26,53 @@ class ProjectScreen extends StatefulWidget {
 class _ProjectScreen extends State<ProjectScreen> {
   ProjectController projectController = ProjectController();
   List<Project> projects = List<Project>();
+  bool buscandoProjetos = true;
 
   @override
   void initState() {
-    this.buscarProjetos();
+    this.buscarProjetos(context);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-
-    return ListView.builder(
-        itemCount: projects.length,
-        itemBuilder: (context, index) {
-          return Card(
-              child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    print('Card tapped.');
-                  },
-                  child: Container(
-                      height: 80,
-                      padding: EdgeInsets.only(bottom: 20),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(projects[index].title),
-                        ],
-                      ))));
+    return buscandoProjetos
+        ? Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+        : ListView.builder(
+            itemCount: projects.length,
+            itemBuilder: (context, index) {
+              return Card(
+                  child: InkWell(
+                splashColor: Colors.blue.withAlpha(30),
+                onTap: () {
+                  print('Card tapped.');
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      top: 36.0, left: 6.0, right: 6.0, bottom: 6.0),
+                  child: ExpansionTile(
+                    title: Text(projects[index].title),
+                    children: <Widget>[
+                      Text(projects[index].resume),
+                    ],
+                  ),
+                ),
+              ));
 //            Text(widget.items[index].title);
-        });
+            });
   }
 
-
-
-  buscarProjetos() async {
-    List<Project> list = await projectController.dioListarProjetos();
+  buscarProjetos(BuildContext context) async {
+    List<Project> list = await projectController.dioListarProjetos(context);
     print(list);
     setState(() {
       this.projects = list;
+      this.buscandoProjetos = false;
     });
-
   }
 }
 

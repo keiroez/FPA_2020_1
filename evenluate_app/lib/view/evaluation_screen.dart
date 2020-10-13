@@ -12,12 +12,16 @@ class EvaluationScreen extends StatefulWidget {
 class _EvaluationScreen extends State<EvaluationScreen> {
   int _valueRadioTipoCliente = 0;
   String _optionSelect = 'Nota';
+  TextEditingController commentsController = new TextEditingController();
+  EvaluationController evaluationController;
 
   Widget build(BuildContext context) {
-    EvaluationController evaluationController = EvaluationController();
+    evaluationController = EvaluationController(commentsController);
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            _handleCapturarTextoRadioTipoCliente(_valueRadioTipoCliente);
+            evaluationController.save(context);
             // Add your onPressed code here!
           },
           child: Icon(Icons.save),
@@ -39,16 +43,16 @@ class _EvaluationScreen extends State<EvaluationScreen> {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.all(10),
-                          height: 40,
+                            padding: EdgeInsets.all(10),
+                            height: 40,
                             child: ListView(
-                          children: [
-                            Text(
-                                'Autores: ' +
-                                    autores(Constants.PROJECT.team.members),
-                                textAlign: TextAlign.left),
-                          ],
-                        ))
+                              children: [
+                                Text(
+                                    'Autores: ' +
+                                        autores(Constants.PROJECT.team.members),
+                                    textAlign: TextAlign.left),
+                              ],
+                            ))
                       ],
                     ))),
             Card(
@@ -99,6 +103,7 @@ class _EvaluationScreen extends State<EvaluationScreen> {
               child: Container(
                 height: 200,
                 child: TextFormField(
+                  controller: commentsController,
                   maxLines: 10,
                   decoration: InputDecoration.collapsed(
                       hintText: "Comentários e sugestões"),
@@ -150,18 +155,23 @@ class _EvaluationScreen extends State<EvaluationScreen> {
       switch (_valueRadioTipoCliente) {
         case 0:
           _optionSelect = '1';
+          evaluationController.optionSelect = 1;
           break;
         case 1:
           _optionSelect = '2';
+          evaluationController.optionSelect = 2;
           break;
         case 2:
           _optionSelect = '3';
+          evaluationController.optionSelect = 3;
           break;
         case 3:
           _optionSelect = '4';
+          evaluationController.optionSelect = 4;
           break;
         case 4:
           _optionSelect = '5';
+          evaluationController.optionSelect = 5;
           break;
       }
     });

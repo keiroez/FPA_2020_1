@@ -1,6 +1,6 @@
 import 'Team.dart';
 
-class Project{
+class Project {
   int id;
   String title;
   String resume;
@@ -29,5 +29,4 @@ class Project{
   static List<Project> toList(List list) {
     return list.map((e) => Project.fromMapLazy(e)).toList();
   }
-
 }

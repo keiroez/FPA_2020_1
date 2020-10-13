@@ -25,6 +25,8 @@ class LoginController {
     } else {
       Constants.USER_TOKEN = response.data['token'];
       print(Constants.USER_TOKEN);
+      Constants.EVALUATOR = Evaluator.fromMap(response.data['evaluator']);
+      print(Constants.EVALUATOR);
       return User.fromMap(response.data);
     }
   }
@@ -70,8 +72,6 @@ class LoginController {
         this.user = await _dioLogin(this.login, this.psw);
         print(user.id);
         Constants.USER = this.user;
-
-        _dioEvaluator(Constants.USER.id.toString());
 
         progressDialog.hide();
         Navigator.pushReplacement(
@@ -128,9 +128,8 @@ class LoginController {
                 color: Colors.indigo,
               ),
             ),
-            border: const OutlineInputBorder(borderSide: BorderSide(
-              color: Colors.red
-            )),
+            border: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red)),
           ),
         ),
       ),

@@ -22,7 +22,7 @@ class _HomeScreen extends State<HomeScreen> {
         child: Container(
             child: Center(
                 child: InkWell(
-                    onTap: () => {homeController.lerQrCode()},
+                    onTap: () => {homeController.lerQrCode(context)},
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -87,7 +87,7 @@ class _HomeScreen extends State<HomeScreen> {
               )),
           color: Colors.black,
           onPressed: () {
-              homeController.irParaProjeto(context);
+            homeController.irParaProjeto(context);
           },
         ),
       )

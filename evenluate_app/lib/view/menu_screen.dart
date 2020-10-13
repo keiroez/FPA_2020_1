@@ -12,7 +12,7 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreen extends State<MenuScreen> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
   PageController _pageController;
 
   @override
@@ -30,9 +30,9 @@ class _MenuScreen extends State<MenuScreen> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    Container(
-      child: new AboutScreen(),
-    ),
+    // Container(
+    //   child: new AboutScreen(),
+    // ),
     Container(
       child: new HomeScreen(),
     ),
@@ -61,10 +61,10 @@ class _MenuScreen extends State<MenuScreen> {
           ),
           bottomNavigationBar: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.toc),
-                title: Text('Sobre'),
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.toc),
+              //   title: Text('Sobre'),
+              // ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 title: Text('Home'),
@@ -85,10 +85,10 @@ class _MenuScreen extends State<MenuScreen> {
     setState(() {
       _selectedIndex = index;
 
-      if (_selectedIndex == 2) {
+      if (_selectedIndex == 0) {
         _pageController.animateToPage(3,
             duration: Duration(milliseconds: 500), curve: Curves.easeOut);
-      } else if (_selectedIndex == 0) {
+      } else if (_selectedIndex == 1) {
         _pageController.animateToPage(3,
             duration: Duration(milliseconds: 500), curve: Curves.easeInBack);
       }

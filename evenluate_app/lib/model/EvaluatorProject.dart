@@ -11,7 +11,8 @@ class EvaluatorProject {
   EvaluatorProject(
       this.id, this.project, this.evaluator, this.value, this.comments);
 
-  EvaluatorProject.lazy(this.project, this.evaluator, this.value, this.comments);
+  EvaluatorProject.lazy(
+      this.project, this.evaluator, this.value, this.comments);
 
   factory EvaluatorProject.fromMap(Map json) {
     return EvaluatorProject(json['id'], Project.fromMap(json['project']),
@@ -19,9 +20,9 @@ class EvaluatorProject {
   }
 
   Map<String, dynamic> toJson() => {
-    "project": project.id,
-    "evaluator": evaluator.id,
-    "value": value,
-    "comments": comments,
-  };
+        "id_project": project.id,
+        "id_evaluator": evaluator.id,
+        "value": value,
+        "comments": comments,
+      };
 }

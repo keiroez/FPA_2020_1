@@ -19,9 +19,10 @@ class HomeController {
     this.textEditingController = textEditingController;
   }
 
-  Future<void> lerQrCode() async {
+  Future<void> lerQrCode(BuildContext context) async {
     String cameraScanResult = await scanner.scan();
     this.textEditingController.text = cameraScanResult;
+    irParaProjeto(context);
   }
 
   irParaProjeto(context) async {
