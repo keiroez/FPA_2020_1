@@ -19,15 +19,16 @@ class _LoginScreen extends State<LoginScreen> {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: Colors.white),
+        theme: ThemeData(
+          primaryColor: Color(0xFF295183),
+        ),
         home: Scaffold(
             appBar: AppBar(
               title: Text("Insira seu usuário"),
             ),
             body: Container(
-              child: loginController.loginWdgt("user", context),
+              child: loginController.loginWdgt("usuario", context),
               color: Colors.white,
             )));
   }
-
 }

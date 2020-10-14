@@ -54,7 +54,7 @@ class _HomeScreen extends State<HomeScreen> {
             width: 100,
             height: 180,
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Color(0xFF295183),
               shape: BoxShape.circle,
             )),
       ),
@@ -85,7 +85,7 @@ class _HomeScreen extends State<HomeScreen> {
                 size: 50.0,
                 semanticLabel: 'Text to announce in accessibility modes',
               )),
-          color: Colors.black,
+          color: Color(0xFF295183),
           onPressed: () {
             homeController.irParaProjeto(context);
           },

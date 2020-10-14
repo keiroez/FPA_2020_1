@@ -10,12 +10,24 @@ class EvaluationController {
   TextEditingController commentsController;
 
   EvaluationController(TextEditingController commentsController) {
-    this.optionSelect = 0;
+    this.optionSelect = -1;
     this.commentsController = commentsController;
   }
 
   save(BuildContext context) {
+    if (this.optionSelect == -1) {
+      Toast.show("Insira a nota", context,
+          duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+      return true;
+    }
+    if (this.commentsController.text == '') {
+      Toast.show("Insira algum comentário ou sugestão", context,
+          duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+      return true;
+    }
+
     _dioEvaluatorProject(context);
+    return false;
   }
 
   _dioEvaluatorProject(BuildContext context) async {
@@ -30,14 +42,14 @@ class EvaluationController {
 
       if (response.statusCode != 201) {
         Toast.show("Erro ao avaliar, tente novamente!", context,
-            duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+            duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
       } else {
         Toast.show("Projeto avaliado", context,
-            duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+            duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
       }
     } on Exception catch (_) {
       Toast.show("Projeto já avaliado por você", context,
-          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+          duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
     }
   }
 }

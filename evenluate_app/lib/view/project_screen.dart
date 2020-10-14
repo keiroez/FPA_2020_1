@@ -36,34 +36,54 @@ class _ProjectScreen extends State<ProjectScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return buscandoProjetos
-        ? Container(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          )
-        : ListView.builder(
-            itemCount: projects.length,
-            itemBuilder: (context, index) {
-              return Card(
-                  child: InkWell(
-                splashColor: Colors.blue.withAlpha(30),
-                onTap: () {
-                  print('Card tapped.');
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: 36.0, left: 6.0, right: 6.0, bottom: 6.0),
-                  child: ExpansionTile(
-                    title: Text(projects[index].title),
-                    children: <Widget>[
-                      Text(projects[index].resume),
-                    ],
-                  ),
+    final theme = Theme.of(context).copyWith(dividerColor: Colors.transparent);
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Projetos avaliados"),
+          backgroundColor: Color(0xFF295183),
+        ),
+        body: buscandoProjetos
+            ? Container(
+                child: Center(
+                  child: CircularProgressIndicator(),
                 ),
-              ));
+              )
+            : ListView.builder(
+                itemCount: projects.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                      color: Color(0xFF4175B6),
+                      child: InkWell(
+                        splashColor: Colors.blue.withAlpha(30),
+                        onTap: () {
+                          print('Card tapped.');
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: 10.0, left: 6.0, right: 6.0, bottom: 6.0),
+                          child: Theme(
+                              data: theme,
+                              child: ExpansionTile(
+                                leading: Icon(
+                                  Icons.assignment,
+                                  color: Colors.white,
+                                ),
+                                title: Text(
+                                  projects[index].title,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Text(projects[index].resume,
+                                        style: TextStyle(color: Colors.white)),
+                                  )
+                                ],
+                              )),
+                        ),
+                      ));
 //            Text(widget.items[index].title);
-            });
+                }));
   }
 
   buscarProjetos(BuildContext context) async {

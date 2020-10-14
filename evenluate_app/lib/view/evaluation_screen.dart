@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:evenluate_app/controller/evaluation_controller.dart';
 import 'package:evenluate_app/model/Member.dart';
 import 'package:evenluate_app/model/utils/constants.dart';
@@ -10,8 +12,8 @@ class EvaluationScreen extends StatefulWidget {
 }
 
 class _EvaluationScreen extends State<EvaluationScreen> {
-  int _valueRadioTipoCliente = 0;
-  String _optionSelect = 'Nota';
+  int _valueRadioTipoCliente = -1;
+  String _optionSelect = 'nota';
   TextEditingController commentsController = new TextEditingController();
   EvaluationController evaluationController;
 
@@ -21,11 +23,13 @@ class _EvaluationScreen extends State<EvaluationScreen> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             _handleCapturarTextoRadioTipoCliente(_valueRadioTipoCliente);
-            evaluationController.save(context);
+            if (!evaluationController.save(context)) {
+              lazyClose();
+            }
             // Add your onPressed code here!
           },
           child: Icon(Icons.save),
-          backgroundColor: Colors.black,
+          backgroundColor: Color(0xFF295183),
         ),
         body: ListView(
           children: [
@@ -38,8 +42,14 @@ class _EvaluationScreen extends State<EvaluationScreen> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(Constants.PROJECT.title,
-                                style: TextStyle(fontSize: 20)),
+                            Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text(Constants.PROJECT.title,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black54)),
+                            )
                           ],
                         ),
                         Container(
@@ -48,9 +58,11 @@ class _EvaluationScreen extends State<EvaluationScreen> {
                             child: ListView(
                               children: [
                                 Text(
-                                    'Autores: ' +
-                                        autores(Constants.PROJECT.team.members),
-                                    textAlign: TextAlign.left),
+                                  'Autores: ' +
+                                      autores(Constants.PROJECT.team.members),
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(color: Colors.black54),
+                                ),
                               ],
                             ))
                       ],
@@ -62,8 +74,14 @@ class _EvaluationScreen extends State<EvaluationScreen> {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        'Resumo: ',
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          'Resumo: ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black54),
+                        ),
                       )
                     ],
                   ),
@@ -72,6 +90,7 @@ class _EvaluationScreen extends State<EvaluationScreen> {
                     child: Text(
                       Constants.PROJECT.resume,
                       textAlign: TextAlign.justify,
+                      style: TextStyle(color: Colors.black54),
                     ),
                   ),
                 ],
@@ -85,7 +104,11 @@ class _EvaluationScreen extends State<EvaluationScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Selecione abaixo a nota para este trabalho: ')
+                    Text(
+                      'Selecione abaixo a nota para este trabalho:',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black54),
+                    )
                   ],
                 ),
                 Row(
@@ -112,10 +135,6 @@ class _EvaluationScreen extends State<EvaluationScreen> {
             )
           ],
         ));
-  }
-
-  Future<bool> _onBackPressed() async {
-    return true;
   }
 
   Column notas(int value) {
@@ -153,23 +172,23 @@ class _EvaluationScreen extends State<EvaluationScreen> {
       _valueRadioTipoCliente = value;
 
       switch (_valueRadioTipoCliente) {
-        case 0:
+        case 1:
           _optionSelect = '1';
           evaluationController.optionSelect = 1;
           break;
-        case 1:
+        case 2:
           _optionSelect = '2';
           evaluationController.optionSelect = 2;
           break;
-        case 2:
+        case 3:
           _optionSelect = '3';
           evaluationController.optionSelect = 3;
           break;
-        case 3:
+        case 4:
           _optionSelect = '4';
           evaluationController.optionSelect = 4;
           break;
-        case 4:
+        case 5:
           _optionSelect = '5';
           evaluationController.optionSelect = 5;
           break;
@@ -185,5 +204,13 @@ class _EvaluationScreen extends State<EvaluationScreen> {
     });
 
     return concatenate.toString();
+  }
+
+  Future<Timer> lazyClose() async {
+    return new Timer(Duration(seconds: 3), onDoneLoading);
+  }
+
+  onDoneLoading() async {
+    Navigator.pop(context);
   }
 }

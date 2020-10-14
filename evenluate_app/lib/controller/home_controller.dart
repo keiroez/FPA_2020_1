@@ -39,10 +39,10 @@ class HomeController {
                 onWillPop: _onBackPressed,
                 child: Scaffold(
                   appBar: AppBar(
-                    backgroundColor: Colors.white,
-                    iconTheme: IconThemeData(color: Colors.black),
+                    backgroundColor: Color(0xFF295183),
+                    iconTheme: IconThemeData(color: Colors.white),
                     title: const Text('Voltar',
-                        style: TextStyle(color: Colors.black)),
+                        style: TextStyle(color: Colors.white)),
                   ),
                   body: Container(child: EvaluationScreen()),
                 ));
@@ -52,7 +52,7 @@ class HomeController {
     } on Exception catch (exception) {
       progressDialog.hide();
       Toast.show("Projeto não encontrado!", context,
-          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+          duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
     }
   }
 

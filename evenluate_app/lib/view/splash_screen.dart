@@ -39,12 +39,7 @@ class _SplashScreen extends State<SplashScreen> {
         children: <Widget>[
           Expanded(
             child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/background.jpg"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                color: Color(0xFF295183),
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,30 +50,11 @@ class _SplashScreen extends State<SplashScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Image.asset('assets/images/logo2.png',
-                                width: 200.0, height: 200.0),
                             new Container(
-                              // elevation: 0,
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  top: BorderSide(
-                                      width: 2.0, color: Colors.white),
-                                  bottom: BorderSide(
-                                      width: 2.0, color: Colors.white),
-                                ),
-                                color: Colors.transparent,
-                              ),
-                              // color: Colors.transparent,
-
-                              // shape: StadiumBorder(
-
-                              //   side: BorderSide(width: 2.0, color: Colors.white)
-
-                              // ),
-                              child: new Text('Feira de Ciências',
+                              child: new Text('EvenLuate',
                                   style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 35,
+                                    fontFamily: 'Padrao',
+                                    fontSize: 40,
                                     color: Colors.white,
                                   )),
                             )

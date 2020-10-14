@@ -46,7 +46,7 @@ class LoginController {
   }
 
   void _pressLogin(textHint, context, String loginSenha) async {
-    if (textHint == "user") {
+    if (textHint == "usuario") {
       this.login = loginSenha;
       Navigator.of(context).push(
         CupertinoPageRoute<void>(
@@ -55,10 +55,10 @@ class LoginController {
                 onWillPop: _onBackPressed,
                 child: Scaffold(
                   appBar: AppBar(
-                    backgroundColor: Colors.white,
-                    iconTheme: IconThemeData(color: Colors.black),
+                    backgroundColor: Color(0xFF295183),
+                    iconTheme: IconThemeData(color: Colors.white),
                     title: const Text('Voltar para login',
-                        style: TextStyle(color: Colors.black)),
+                        style: TextStyle(color: Colors.white)),
                   ),
                   body: Container(child: loginWdgt('senha', context)),
                 ));
@@ -79,7 +79,7 @@ class LoginController {
       } on Exception catch (exception) {
         progressDialog.hide();
         Toast.show("Login ou senha incorretos", context,
-            duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+            duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
       }
     }
   }
@@ -145,13 +145,16 @@ class LoginController {
                 size: 50.0,
                 semanticLabel: 'Text to announce in accessibility modes',
               )),
-          color: Colors.black,
+          color: Color(0xFF295183),
           onPressed: () {
             if (lsController.text.length > 0) {
               this.goToPassword(context, textHint, lsController.text);
             } else {
-              Toast.show("Digite o seu usuário!", context,
-                  duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+              textHint == "senha"
+                  ? Toast.show("Digite o sua senha!", context,
+                      duration: Toast.LENGTH_LONG, gravity: Toast.CENTER)
+                  : Toast.show("Digite o seu usuário!", context,
+                      duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
             }
           },
         ),
